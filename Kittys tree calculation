@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+
+public class Solution {
+ class node{
+     int data;
+    HashSet<int> edge=new HashSet<int>();
+    node(int data)
+    {
+        this.data=data;
+    }
+ }
+ static int findpath(node[] tree, node u, node v)
+ {
+     if(u.edge.contains(v.data))
+     return 1;
+     Iterator<int> itr=u.edge.iterator();
+     
+ }
+ static int calculate(node[] tree, int[] set)
+ {
+     if (set.length<=1)
+     return 0;
+     int edges;
+     for (int i=0;i<set.length-1;i++)
+     {
+         for(int j=i+1;j<set.length;j++)
+         {
+             edges=findpath(tree,tree[i],tree[j]);
+
+         }
+     }
+
+ }
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc =new Scanner(System.in);
+        String[] str=sc.nextLine().split(" "));
+        int n=Integeer.parseInt(str[0]);
+        int q=Integeer.parseInt(str[1]);
+        node[] tree=new node[n+1];
+        for(int i=1;i<=n;i++)
+        tree [i]=new node(i);
+
+        for(int i=0;i<n-1;i++)
+        {
+            str=sc.nextLine().split(" ");
+            int i1=Integeer.parseInt(str[0]);
+            int i2=Integeer.parseInt(str[1]);
+            tree[i1].edge.add(tree[i2]);
+            tree[i2].edge.add(tree[i1]);
+        }
+        for(int i=0;i<q;i++)
+        {
+            int sz=Integeer.parseInt(sc.nextLine());
+            str=sc.nextLine().split(" ");
+            int[] set=new int[sz];
+            for(int j=0;j<sz;j++)
+            set[j]=Integeer.parseInt(str[j]);
+            System.out.println(calculate(tree,set));
+        }
+    }
+}
+
